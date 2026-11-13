@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>@alsoplay — Python / C++ / C# Developer</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <canvas id="bg-canvas"></canvas>
+  <div class="cursor-glow" id="cursor-glow"></div>
+
+  <header class="topbar">
+    <div class="brand">
+      <span class="status-dot"></span>
+      <span class="mono">@alsoplay</span>
+      <span class="badge">online</span>
+    </div>
+    <nav class="nav-actions">
+      <button class="ghost-btn mono" id="matrix-toggle" title="Включить режим Matrix">
+        [ matrix: off ]
+      </button>
+      <a class="tg-pill" href="https://t.me/alsoplay" target="_blank" rel="noopener noreferrer">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+          <path d="M21.5 3.5L2.5 10.8C1.2 11.3 1.2 12.1 2.3 12.4L7.2 13.9L18.5 6.8C19 6.5 19.5 6.7 19.1 7L10 15.2L9.7 20.1C10.2 20.1 10.4 19.9 10.7 19.6L13.1 17.3L18.1 21C19 21.5 19.7 21.2 19.9 20.1L22.9 4.8C23.2 3.6 22.4 3.1 21.5 3.5Z" fill="currentColor"/>
+        </svg>
+        <span>t.me/alsoplay</span>
+      </a>
+    </nav>
+  </header>
+
+  <main class="container">
+    <!-- HERO -->
+    <section class="hero">
+      <div class="hero-left">
+        <div class="eyebrow mono">
+          <span class="prompt">&gt;_</span>
+          <span id="typewriter"></span><span class="caret">|</span>
+        </div>
+        <h1>
+          Пишу код на <span class="accent-py">Python</span>,
+          <span class="accent-cpp">C++</span> и
+          <span class="accent-cs">C#</span>.
+        </h1>
+        <p class="lead">
+          Привет, я <strong>@alsoplay</strong>. От быстрых скриптов и автоматизации до высокопроизводительных систем на плюсах и чистой архитектуры под .NET.
+        </p>
+
+        <div class="cta-row">
+          <a class="primary-btn" href="https://t.me/alsoplay" target="_blank" rel="noopener noreferrer">
+            <span>Написать в Telegram</span>
+            <span class="arrow">-&gt;</span>
+          </a>
+          <button class="secondary-btn mono" id="copy-tg" data-handle="@alsoplay">
+            Скопировать @alsoplay
+          </button>
+        </div>
+
+        <div class="metrics">
+          <div class="metric">
+            <span class="metric-val mono" data-count="3">0</span>
+            <span class="metric-label">основных стека</span>
+          </div>
+          <div class="metric">
+            <span class="metric-val mono">0ms</span>
+            <span class="metric-label">лишней воды</span>
+          </div>
+          <div class="metric">
+            <span class="metric-val mono" id="fps-counter">60 fps</span>
+            <span class="metric-label">живой фон</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- INTERACTIVE CODE SANDBOX -->
+      <div class="hero-right">
+        <div class="window code-window">
+          <div class="window-bar">
+            <div class="dots">
+              <span class="dot red"></span>
+              <span class="dot yellow"></span>
+              <span class="dot green"></span>
+            </div>
+            <div class="lang-tabs" role="tablist">
+              <button class="lang-tab active" data-lang="python" role="tab">main.py</button>
+              <button class="lang-tab" data-lang="cpp" role="tab">engine.cpp</button>
+              <button class="lang-tab" data-lang="csharp" role="tab">Program.cs</button>
+            </div>
+            <button class="run-btn mono" id="run-code-btn">▶ Run</button>
+          </div>
+          <pre class="code-body mono" id="code-display"></pre>
+          <div class="code-console mono" id="code-console">
+            <span class="console-muted">// Нажми Run, чтобы выполнить сниппет</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- STACK CARDS -->
+    <section class="stack-section">
+      <div class="section-head">
+        <h2 class="mono">// Стек и специализация</h2>
+        <span class="hint mono">кликни на карточку, чтобы переключить акцент</span>
+      </div>
+      <div class="cards-grid">
+        <article class="stack-card" data-accent="python">
+          <div class="card-top">
+            <span class="lang-badge py mono">PY</span>
+            <span class="card-tag mono">Automation &amp; Backend</span>
+          </div>
+          <h3>Python</h3>
+          <p>Асинхронные сервисы, боты, парсеры, FastAPI, скрипты для автоматизации рутины и работы с данными.</p>
+          <div class="tags mono">
+            <span>FastAPI</span><span>asyncio</span><span>aiogram</span><span>PyTest</span>
+          </div>
+        </article>
+
+        <article class="stack-card" data-accent="cpp">
+          <div class="card-top">
+            <span class="lang-badge cpp mono">C++</span>
+            <span class="card-tag mono">Performance &amp; Systems</span>
+          </div>
+          <h3>C++</h3>
+          <p>Низкоуровневая оптимизация, работа с памятью, многопоточность, алгоритмы и нативные модули.</p>
+          <div class="tags mono">
+            <span>C++20</span><span>STL</span><span>CMake</span><span>Multithreading</span>
+          </div>
+        </article>
+
+        <article class="stack-card" data-accent="csharp">
+          <div class="card-top">
+            <span class="lang-badge cs mono">C#</span>
+            <span class="card-tag mono">.NET &amp; Desktop / Game</span>
+          </div>
+          <h3>C#</h3>
+          <p>Чистая архитектура на .NET, десктопные утилиты, бэкенд-сервисы, LINQ и скриптинг под Unity.</p>
+          <div class="tags mono">
+            <span>.NET 8</span><span>ASP.NET</span><span>LINQ</span><span>Unity</span>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- INTERACTIVE TERMINAL -->
+    <section class="terminal-section">
+      <div class="section-head">
+        <h2 class="mono">// Интерактивный терминал</h2>
+        <span class="hint mono">попробуй: help, whoami, stack, ping, matrix, tg</span>
+      </div>
+      <div class="window terminal-window" id="terminal-box">
+        <div class="window-bar">
+          <div class="dots">
+            <span class="dot red"></span>
+            <span class="dot yellow"></span>
+            <span class="dot green"></span>
+          </div>
+          <span class="mono window-title">alsoplay@dev: ~ (zsh)</span>
+          <button class="ghost-btn mono" id="clear-term">clear</button>
+        </div>
+        <div class="terminal-output mono" id="terminal-output"></div>
+        <form class="terminal-input-row mono" id="terminal-form">
+          <span class="term-prompt">alsoplay@dev:~$</span>
+          <input
+            type="text"
+            id="terminal-input"
+            autocomplete="off"
+            spellcheck="false"
+            placeholder="введи команду (например, help)..."
+          />
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <span class="mono">© <span id="year"></span> @alsoplay · Python / C++ / C#</span>
+    <a class="mono footer-link" href="https://t.me/alsoplay" target="_blank" rel="noopener noreferrer">
+      Telegram: @alsoplay ↗
+    </a>
+  </footer>
+
+  <div class="toast mono" id="toast">Скопировано: @alsoplay</div>
+
+  <script src="app.js"></script>
+</body>
+</html>
